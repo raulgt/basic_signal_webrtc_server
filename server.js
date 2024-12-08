@@ -1,14 +1,21 @@
 
-const server = require('http').createServer();
-
 //require our websocket library 
 var WebSocket  = require('ws');
+// require http
+const http = require('http');
+
+// Crear el servidor HTTP
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('HTTP server is running\n');
+    });
 
 //creating a websocket server at port 9090 
 var wss = new WebSocket.Server({ server });
 
 server.keepAliveTimeout = 120000; // 120 segundos
 server.headersTimeout = 120000; // 120 segundos
+
 
 server.listen(process.env.PORT || 4700, () => {
     console.log(`Server is running on port ${server.address().port}`);
