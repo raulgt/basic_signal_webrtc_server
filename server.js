@@ -56,10 +56,11 @@ wss.on('connection', function (connection) {
                     //save user connection on the server 
                     users[data.name] = connection;
                     connection.name = data.name;
-                    console.log('users: ', users);
+                    
                     sendTo(connection, {
                         type: "login",
-                        success: true
+                        success: true,
+                        users
                     });
                 }
 
